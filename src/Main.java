@@ -361,5 +361,62 @@ class TelephoneBook {
 
 public class Main {
     public static void main(String[] args) {
+        // Создание телефонного справочника
+        TelephoneBook telephoneBook = new TelephoneBook();
+
+        // Создание нескольких абонентов
+        Subscriber subscriber1 = new Subscriber("Иван", "Иванов", 25, "1234567890");
+        Subscriber subscriber2 = new Subscriber("Петр", "Петров", 30, "0987654321");
+        Subscriber subscriber3 = new Subscriber("Светлана", "Сидорова", 22, "1112223334");
+        Subscriber subscriber4 = new Subscriber("Анна", "Сидорова", 28, "2223334445");
+        Subscriber subscriber5 = new Subscriber("Иван", "Иванов", 25, "1234567890"); // Дубликат
+
+        // Добавление абонентов в телефонный справочник
+        telephoneBook.addSubscriber(subscriber1);
+        telephoneBook.addSubscriber(subscriber2);
+        telephoneBook.addSubscriber(subscriber3);
+        telephoneBook.addSubscriber(subscriber4);
+        telephoneBook.addSubscriber(subscriber5); // Попытка добавить дубликат
+
+        // Отображение списка абонентов
+        telephoneBook.showSubscribers();
+
+        // Поиск номера телефона по имени и фамилии
+        telephoneBook.findPhoneNumNameAndLastname("Иван", "Иванов");
+        telephoneBook.findPhoneNumNameAndLastname("Петр", "Петров");
+        telephoneBook.findPhoneNumNameAndLastname("Светлана", "Сидорова");
+
+        // Поиск номера телефона по имени или фамилии
+        telephoneBook.findPhoneNumNameOrLastname("Сидорова");
+
+        // Удаление абонента по имени и фамилии
+        telephoneBook.removeByName("Петр", "Петров");
+        telephoneBook.showSubscribers();
+
+        // Удаление по номеру телефона
+        telephoneBook.removeByPhone("1234567890");
+        telephoneBook.showSubscribers();
+
+        // Удаление абонентов младше определённого возраста
+        telephoneBook.removeUndAge(26);
+        telephoneBook.showSubscribers();
+
+        // Замена номера телефона
+        telephoneBook.replacePhoneNum("Светлана", "Сидорова", "5556667778");
+        telephoneBook.showSubscribers();
+
+        // Проверка наличия однофамильцев
+        telephoneBook.isAnyCommon();
+
+        // Вычисление среднего возраста
+        telephoneBook.averageEvenDigits();
+
+        // Получение суммарного возраста по имени
+        int totalAge = telephoneBook.summaryAgeByName("Иван");
+        System.out.println("Суммарный возраст абонентов с именем Иван: " + totalAge);
+
+        // Получение максимального суммарного возраста по первой букве фамилии
+        int maxAge = telephoneBook.getMaxAgeByFirstLetter();
+        System.out.println("Максимальный суммарный возраст по первой букве фамилии: " + maxAge);
     }
 }
